@@ -1,1 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours 1 - L'engagement personnel avec Jésus</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #2d3748;
+            padding-bottom: 60px;
+        }
+
+        .header {
+            background-color: #002b49;
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .header-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        /* Banner Image */
+        .course-banner {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Content Card */
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            line-height: 1.6;
+        }
+
+        .card h2 {
+            color: #002b49;
+            font-size: 18px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 8px;
+        }
+
+        .card h3 {
+            color: #2b6cb0;
+            font-size: 15px;
+            margin: 14px 0 6px 0;
+        }
+
+        .card p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+
+        .card ul {
+            margin-left: 20px;
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        .bible-verse {
+            background-color: #f7fafc;
+            border-left: 4px solid #3182ce;
+            padding: 10px 14px;
+            font-style: italic;
+            font-size: 13px;
+            color: #2d3748;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            display: none;
+        }
+
+        .question-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .question-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 14px;
+        }
+
+        .option-btn {
+            width: 100%;
+            text-align: left;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #2d3748;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            background: #ebf8ff;
+            border-color: #3182ce;
+        }
+
+        .option-btn.selected {
+            background: #ebf8ff;
+            border-color: #3182ce;
+            font-weight: 600;
+        }
+
+        .btn-main {
+            width: 100%;
+            background-color: #38a169;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* Result Box */
+        .result-box {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .score-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: #38a169;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 16px auto;
+        }
+
+        .info-box {
+            background: #ebf8ff;
+            border: 1px solid #bee3f8;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            text-align: left;
+            font-size: 14px;
+            color: #2b6cb0;
+            line-height: 1.5;
+        }
+
+        .info-box i {
+            margin-right: 8px;
+            color: #3182ce;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+        <div class="header-title">Cours 1 : L'engagement personnel</div>
+    </header>
+
+    <div class="container">
+
+        <!-- SECTION TEXTE DU COURS -->
+        <div id="course-text">
+            <img src="ENGAGEMENT.jpg" class="course-banner" alt="Engagement Jésus">
+
+            <div class="card">
+                <h2>Introduction : Le constat</h2>
+                <p>Aujourd'hui, nos églises sont remplies de personnes qui ont accepté Jésus un jour. Pourtant, dans leur vie de tous les jours, on ne voit pas de différence. C'est ce qu'on appelle la <strong>foi de masse</strong>.</p>
+                <p>Un engagement réel repose sur deux principes :</p>
+                <ul>
+                    <li><strong>La Conscience :</strong> Agir en sachant exactement ce que l'on fait.</li>
+                    <li><strong>La Responsabilité :</strong> Accepter de vivre selon la Parole de Dieu.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Chapitre 1 : Pourquoi recevoir Jésus ?</h2>
+                <p>Recevoir Jésus change notre destinée éternelle et quotidienne :</p>
+                <h3>1. Le pardon et l'adoption divine</h3>
+                <p>Tous nos péchés sont effacés et nous devenons officiellement des enfants de Dieu (Jean 1:12).</p>
+                <h3>2. Notre Avocat face au Jugement</h3>
+                <p>Chaque homme rendra des comptes. Sans Jésus, nous sommes condamnés. Mais avec Lui, Jésus devient notre <strong>Avocat</strong> et nous sommes déclarés "non coupable" (Justification).</p>
+            </div>
+
+            <div class="card">
+                <h2>Chapitre 2 : Comment recevoir Jésus ?</h2>
+                <p>Dans le cœur de chaque homme, il y a un trône. Avant Christ, c'est le "Moi" qui dirige. Recevoir Jésus, c'est descendre du trône et le laisser régner comme Seigneur et Patron.</p>
+                <div class="bible-verse">
+                    "Si tu confesses de ta bouche le Seigneur Jésus, et si tu crois dans ton cœur que Dieu l'a ressuscité des morts, tu seras sauvé." — Romains 10:9
+                </div>
+                <p>Cela demande un demi-tour réel : la <strong>repentance sincère</strong> (Actes 3:19).</p>
+            </div>
+
+            <div class="card">
+                <h2>Chapitre 3 : La Prospérité de l'âme</h2>
+                <div class="bible-verse">
+                    "Celui qui cache ses transgressions ne prospère point, mais celui qui les avoue et les délaisse obtient miséricorde." — Proverbes 28:13
+                </div>
+                <p>La bénédiction de Dieu ne coule pas dans un cœur qui cache ses fautes. La vraie libération passe par l'aveu et la cure d'âme auprès de ses responsables spirituels (Jacques 5:16).</p>
+            </div>
+
+            <button class="btn-main" onclick="startQuiz()">
+                Passer à l'Évaluation (10 QCM) <i class="fa-solid fa-graduation-cap"></i>
+            </button>
+        </div>
+
+        <!-- SECTION QUIZ INTERACTIF -->
+        <div id="quiz-section" class="quiz-container">
+            <h2 style="margin-bottom: 16px; color: #002b49;">Évaluation du Cours 1</h2>
+            <div id="questions-wrapper"></div>
+            <button class="btn-main" onclick="submitQuiz()">Valider mes réponses <i class="fa-solid fa-check"></i></button>
+        </div>
+
+        <!-- RESULTAT FINALE -->
+        <div id="result-section" class="result-box">
+            <div class="score-circle" id="score-display">0%</div>
+            <h2 id="result-title" style="color: #002b49; margin-bottom: 8px;">Félicitations !</h2>
+            <p id="result-text" style="color: #4a5568; margin-bottom: 12px;"></p>
+            
+            <div id="admin-notice" class="info-box" style="display: none;">
+                <i class="fa-solid fa-church"></i> <strong>Remise du Diplôme :</strong><br>
+                À l'issue de votre parcours complet de formation, votre diplôme physique vous sera remis en main propre. Veuillez vous présenter à la <strong>Direction de l'Administration de l'Église</strong> pour enregistrer votre réussite et retirer votre document officiel.
+            </div>
+
+            <a href="index.html" class="btn-main" style="text-decoration: none;">Retour à l'accueil</a>
+        </div>
+
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                q: "1. Qu'est-ce qu'un véritable engagement personnel avec Jésus ?",
+                options: ["Suivre la tradition de l'église", "Une décision consciente et responsable", "Une simple émotion du dimanche"],
+                correct: 1
+            },
+            {
+                q: "2. Face au jugement dernier de Dieu, quel est le rôle décisif de Jésus ?",
+                options: ["Il est un simple modèle", "Il devient notre Avocat et nous justifie", "Il compte nos mauvaises actions"],
+                correct: 1
+            },
+            {
+                q: "3. Quel statut reçoit-on immédiatement en recevant Jésus ?",
+                options: ["Un simple statut de fidèle", "L'adoption divine comme Enfant de Dieu", "Un titre religieux"],
+                correct: 1
+            },
+            {
+                q: "4. Que signifie laisser Jésus prendre la place centrale ?",
+                options: ["Le visiter uniquement le dimanche", "Descendre du trône de son cœur pour Le laisser diriger", "L'inviter sans changer sa vie"],
+                correct: 1
+            },
+            {
+                q: "5. Qu'est-ce que la vraie repentance ?",
+                options: ["Pleurer sans changer", "Un demi-tour réel pour abandonner le péché", "Cacher ses fautes"],
+                correct: 1
+            },
+            {
+                q: "6. Comment consulter Jésus au quotidien ?",
+                options: ["Agir puis prier plus tard", "Demander 'Seigneur qu'en penses-tu ?' avant chaque choix", "Faire ce que les autres font"],
+                correct: 1
+            },
+            {
+                q: "7. Selon Proverbes 28:13, pourquoi certains ne prospèrent-ils pas ?",
+                options: ["Par manque de prière", "Parce qu'ils cachent leurs fautes", "Parce que Dieu refuse"],
+                correct: 1
+            },
+            {
+                q: "8. Quel est le but de la confession auprès d'un serviteur de Dieu ?",
+                options: ["Être jugé publiquement", "Être aidé, éclairé et prié pour sa libération", "Prouver qu'on est parfait"],
+                correct: 1
+            },
+            {
+                q: "9. Quelle image illustre la vraie confession du péché ?",
+                options: ["Garder un secret", "Comme vomir : tout faire sortir sans rien garder", "Nettoyer l'extérieur seulement"],
+                correct: 1
+            },
+            {
+                q: "10. Que représente le baptême d'eau ?",
+                options: ["Une coutume familiale", "L'annonce officielle qu'on appartient désormais à Christ", "Un diplôme d'église"],
+                correct: 1
+            }
+        ];
+
+        let userAnswers = {};
+
+        function startQuiz() {
+            document.getElementById('course-text').style.display = 'none';
+            document.getElementById('quiz-section').style.display = 'block';
+
+            const wrapper = document.getElementById('questions-wrapper');
+            wrapper.innerHTML = '';
+
+            quizData.forEach((item, index) => {
+                let qHtml = `<div class="question-card">
+                    <div class="question-title">${item.q}</div>`;
+                
+                item.options.forEach((opt, optIdx) => {
+                    qHtml += `<button class="option-btn" id="q${index}_opt${optIdx}" onclick="selectOption(${index}, ${optIdx})">${opt}</button>`;
+                });
+
+                qHtml += `</div>`;
+                wrapper.innerHTML += qHtml;
+            });
+        }
+
+        function selectOption(qIdx, optIdx) {
+            userAnswers[qIdx] = optIdx;
+            
+            quizData[qIdx].options.forEach((_, i) => {
+                const btn = document.getElementById(`q${qIdx}_opt${i}`);
+                if (i === optIdx) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
+        }
+
+        function submitQuiz() {
+            if (Object.keys(userAnswers).length < quizData.length) {
+                alert("Veuillez répondre à toutes les 10 questions avant de valider.");
+                return;
+            }
+
+            let score = 0;
+            quizData.forEach((item, index) => {
+                if (userAnswers[index] === item.correct) {
+                    score++;
+                }
+            });
+
+            const percentage = (score / quizData.length) * 100;
+
+            document.getElementById('quiz-section').style.display = 'none';
+            document.getElementById('result-section').style.display = 'block';
+
+            document.getElementById('score-display').innerText = `${percentage}%`;
+
+            if (percentage >= 80) {
+                document.getElementById('score-display').style.background = "#38a169";
+                document.getElementById('result-title').innerText = "Félicitations ! 🎉";
+                document.getElementById('result-text').innerText = `Excellente préparation ! Vous avez réussi le Cours 1 avec ${score}/10 réponses correctes. Le Cours 2 est maintenant débloqué.`;
+                document.getElementById('admin-notice').style.display = 'block';
+            } else {
+                document.getElementById('score-display').style.background = "#e53e3e";
+                document.getElementById('result-title').innerText = "Tentative insuffisante";
+                document.getElementById('result-text').innerText = `Vous avez obtenu ${score}/10 (${percentage}%). Il est nécessaire d'obtenir au moins 80% pour valider ce cours et débloquer le suivant. Relisez attentivement le support puis réessayez.`;
+                document.getElementById('admin-notice').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
 
