@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Élus en Chemin pour le Réveil - Académie</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #1a202c;
+            padding-bottom: 80px;
+        }
+
+        /* En-tête / Header */
+        .header {
+            background-color: #ffffff;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid #002b49;
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-titles h1 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #002b49;
+            line-height: 1.2;
+        }
+
+        .brand-titles p {
+            font-size: 11px;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #002b49;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Conteneur Principal */
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #4a5568;
+            letter-spacing: 0.8px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        /* Carte de Progrès / Diplôme */
+        .progress-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .badge-icon {
+            width: 50px;
+            height: 50px;
+            background: #f6ad55;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .progress-details {
+            flex-grow: 1;
+        }
+
+        .progress-details h3 {
+            font-size: 15px;
+            color: #2d3748;
+            margin-bottom: 6px;
+        }
+
+        .progress-bar-container {
+            background-color: #edf2f7;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+
+        .progress-bar {
+            width: 14%; /* Pourcentage global */
+            height: 100%;
+            background-color: #38a169;
+            border-radius: 4px;
+        }
+
+        .stars {
+            color: #d69e2e;
+            font-size: 12px;
+        }
+
+        /* Liste des Cours */
+        .courses-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .course-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            display: flex;
+            gap: 14px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .course-card:active {
+            transform: scale(0.98);
+        }
+
+        .course-card.locked {
+            opacity: 0.6;
+            filter: grayscale(0.8);
+        }
+
+        .course-cover {
+            width: 90px;
+            height: 110px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .course-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .course-tag {
+            align-self: flex-start;
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .course-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a202c;
+            line-height: 1.3;
+            margin: 4px 0;
+        }
+
+        .btn-action {
+            background-color: #38a169;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .btn-action.locked-btn {
+            background-color: #a0aec0;
+        }
+
+        /* Barre de navigation inférieure */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #a0aec0;
+            font-size: 10px;
+            font-weight: 600;
+            gap: 4px;
+        }
+
+        .nav-item.active {
+            color: #002b49;
+        }
+
+        .nav-item i {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="brand-info">
+            <div class="logo-circle">
+                <!-- Mettre l'image du logo transmis ici -->
+                <i class="fa-solid fa-dove" style="color: white; font-size: 20px;"></i>
+            </div>
+            <div class="brand-titles">
+                <h1>Élus en Chemin</h1>
+                <p>Pour le Réveil</p>
+            </div>
+        </div>
+        <div class="user-avatar">P</div>
+    </header>
+
+    <div class="container">
+
+        <!-- Section Progrès -->
+        <div class="section-title">Votre Progrès</div>
+        <div class="progress-card">
+            <div class="badge-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="progress-details">
+                <h3>Diplôme d'Affermissement</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <span style="color: #718096; font-size: 11px; margin-left: 5px;">1/7 Cours</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Cours -->
+        <div class="section-title">Parcours des 7 Cours</div>
+        <div class="courses-list">
+
+            <!-- COURS 1 (DÉBLOQUÉ) -->
+            <a href="cours1-engagement.html" class="course-card">
+                <!-- Image d'illustration symbolique (Baptême / Engagement) -->
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=300&auto=format&fit=crop" alt="Cours 1" class="course-cover">
+                <div class="course-info">
+                    <span class="course-tag">Cours 1 • Fondement</span>
+                    <div class="course-title">L'engagement personnel avec Jésus</div>
+                    <button class="btn-action">
+                        <span>Commencer</span>
+                        <span><i class="fa-solid fa-play"></i></span>
+                    </button>
+                </div>
+            </a>
+
+            <!-- COURS 2 (VERROUILLÉ) -->
+            <div class="course-card locked">
+                <img src="https://images.unsplash.com/photo-1507434965515-61970f2bd7c6?q=80&w=300&auto=format&fit=crop" alt="Cours 2" class="course-cover">
+                <div class="course-info">
+                    <span class="course-tag" style="background:#edf2f7; color:#718096;">Cours 2</span>
+                    <div class="course-title">L'ABC de la Foi</div>
+                    <button class="btn-action locked-btn">
+                        <span>Bloqué</span>
+                        <span><i class="fa-solid fa-lock"></i></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- COURS 3 (VERROUILLÉ) -->
+            <div class="course-card locked">
+                <img src="https://images.unsplash.com/photo-1499209974431-9dac3ada00d7?q=80&w=300&auto=format&fit=crop" alt="Cours 3" class="course-cover">
+                <div class="course-info">
+                    <span class="course-tag" style="background:#edf2f7; color:#718096;">Cours 3</span>
+                    <div class="course-title">Affermi pour la croissance</div>
+                    <button class="btn-action locked-btn">
+                        <span>Bloqué</span>
+                        <span><i class="fa-solid fa-lock"></i></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- COURS 4 (VERROUILLÉ) -->
+            <div class="course-card locked">
+                <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=300&auto=format&fit=crop" alt="Cours 4" class="course-cover">
+                <div class="course-info">
+                    <span class="course-tag" style="background:#edf2f7; color:#718096;">Cours 4</span>
+                    <div class="course-title">Les devoirs du chrétien</div>
+                    <button class="btn-action locked-btn">
+                        <span>Bloqué</span>
+                        <span><i class="fa-solid fa-lock"></i></span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Navigation Inférieure -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fa-solid fa-house"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Mes Cours</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-bible"></i>
+            <span>Bible</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Profil</span>
+        </a>
+    </nav>
+
+</body>
+</html>
